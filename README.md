@@ -6,7 +6,7 @@
 
 Створи аккаунт на Render. Після чого в акаунті створи нову базу даних PostgresSQL, яку треба назвати db-contacts:
 
-#cКрок 2
+# Крок 2
 
 Встанови графічний редактор pgAdmin для зручної роботи з базою даних для PosgresSQL. Підключися до створенної хмарної бази через графічній редактор та створи таблицю contacts .
 
@@ -22,6 +22,7 @@
 
 Sequelize-модель contacts:
 
+```js
 const Contact = sequelize.define(
   'contact', {
     name: {
@@ -41,7 +42,7 @@ const Contact = sequelize.define(
       defaultValue: false,
     },
   }
-
+```
 
 
 

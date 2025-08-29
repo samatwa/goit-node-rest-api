@@ -5,8 +5,9 @@ import "dotenv/config";
 import contactsRouter from "./routes/contactsRouter.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { notFoundHandler } from "./middlewares/notFoundHandler.js";
+import "./db/sequelize.js";
 
-const PORT = process.env.PORT;
+const PORT = process.env.DB_PORT;
 const app = express();
 
 app.use(morgan("tiny"));

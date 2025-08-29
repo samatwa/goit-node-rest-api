@@ -1,10 +1,10 @@
 # Kuznetsov Viacheslav 
 
-# Домашнє завдання 3: goit-node-rest-api
+# Домашнє завдання 3: PostgresSQL та Sequelize
 
 # Крок 1
 
-Створи аккаунт на Render. Після чого в акаунті створи нову базу даних PostgresSQL, яку треба назвати db-contacts:
+Створи аккаунт на Render. Після чого в акаунті створи нову базу даних PostgresSQL, яку треба назвати db-contacts.
 
 # Крок 2
 

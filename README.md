@@ -50,7 +50,7 @@ const Contact = sequelize.define(
 
 У нас з'явилося в контактах додаткове поле статусу favorite, яке приймає логічне значення true або false. Воно відповідає за те, що в обраному чи ні знаходиться зазначений контакт. Потрібно реалізувати для оновлення статусу контакту новий роутер:
 
-PATCH /api/contacts/:contactId/favorite
+```jsPATCH /api/contacts/:contactId/favorite```
 
 Отримує параметр contactId
 Отримує body в json-форматі c оновленням поля favorite

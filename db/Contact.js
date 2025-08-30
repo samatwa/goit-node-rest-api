@@ -20,6 +20,6 @@ const Contact = sequelize.define("contact", {
   },
 });
 
-export async function listContacts() {
-  return await Contact.findAll();
-}
+// Contact.sync({ alter: true });
+
+export default Contact;

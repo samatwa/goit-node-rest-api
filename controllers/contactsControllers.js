@@ -61,8 +61,7 @@ export const updateContact = async (req, res, next) => {
 export const updateStatusContact = async (req, res, next) => {
   try {
     const { contactId } = req.params;
-    const { favorite } = req.body;
-    const updated = await contactsService.updateStatusContact(contactId, {favorite});
+    const updated = await contactsService.updateStatusContact(contactId, req.body);
     if (!updated) throw HttpError(404, "Not found");
     res.status(200).json(updated);
   } catch (error) {

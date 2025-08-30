@@ -7,7 +7,7 @@ import { errorHandler } from "./middlewares/errorHandler.js";
 import { notFoundHandler } from "./middlewares/notFoundHandler.js";
 import "./db/sequelize.js";
 
-const PORT = process.env.DB_PORT;
+const PORT = Number(process.env.PORT) || 3000;
 const app = express();
 
 app.use(morgan("tiny"));

@@ -1,58 +1,31 @@
-import fs from "node:fs/promises";
-import path from "node:path";
-import { nanoid } from "nanoid";
+import Contact from "../db/Contact.js";
 
-const contactsPath = path.resolve("db", "contacts.json");
+export const listContacts = () => Contact.findAll();
 
-const updateContacts = (contacts) =>
-  fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+export const getContactById = (id) => Contact.findByPk(id);
 
-export async function listContacts() {
-  try {
-    const data = await fs.readFile(contactsPath, "utf-8");
-    return JSON.parse(data);
-  } catch (error) {
-    console.error("Error reading contacts:", error);
-    return [];
-  }
+export const removeContact = async (id) => {
+  const contact = await getContactById(id);
+  if (!contact) return null;
+
+  await contact.destroy();
+  return contact;
 }
 
-export async function getContactById(contactId) {
-  const contacts = await listContacts();
-  const contact = contacts.find((contact) => contact.id === contactId);
-  return contact || null;
+export const addContact = (name, email, phone) => Contact.create({name, email, phone});
+
+export const updateContact = async (id, payload) => {
+  const contact = await getContactById(id);
+  if (!contact) return null;
+
+  await contact.update(payload);
+  return contact;
 }
 
-export async function removeContact(contactId) {
-  const contacts = await listContacts();
-  const index = contacts.findIndex((contact) => contact.id === contactId);
-  if (index === -1) {
-    return null;
-  }
-  const [removedContact] = contacts.splice(index, 1);
-  await updateContacts(contacts);
-  return removedContact;
-}
+export const updateStatusContact = async (id, {favorite}) => {
+  const contact = await getContactById(id);
+  if (!contact) return null;
 
-export async function addContact(name, email, phone) {
-  const contacts = await listContacts();
-  const newContact = {
-    id: nanoid(),
-    name,
-    email,
-    phone,
-  };
-  contacts.push(newContact);
-  await updateContacts(contacts);
-  return newContact;
-}
-
-export async function updateContact(contactId, data) {
-  const contacts = await listContacts();
-  const index = contacts.findIndex((c) => c.id === contactId);
-  if (index === -1) return null;
-
-  contacts[index] = { ...contacts[index], ...data };
-  await updateContacts(contacts);
-  return contacts[index];
+  await contact.update({ favorite });
+  return contact;
 }

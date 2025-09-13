@@ -2,24 +2,32 @@
   "name": "goit-node-rest-api",
   "type": "module",
   "scripts": {
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest --coverage",
+    "test:file": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest functions/calcWeightIndex.test.js",
     "start": "node ./app.js",
     "dev": "nodemon ./app.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "cloudinary": "^2.7.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "gravatar": "^1.8.2",
     "http-errors": "^2.0.0",
     "joi": "^17.13.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
+    "multer": "^2.0.2",
     "nanoid": "^5.0.7",
     "pg": "^8.16.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.7"
   },
   "devDependencies": {
+    "cross-env": "^10.0.0",
+    "jest": "^30.1.3",
     "nodemon": "^3.0.2"
   },
   "version": "1.0.0",

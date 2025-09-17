@@ -17,3 +17,7 @@ export const loginSchema = Joi.object({
 export const updateSubscriptionSchema = Joi.object({
   subscription: Joi.string().valid(...subscriptionTypes).required(),
 });
+
+export const verifyEmailSchema = Joi.object({
+  email: Joi.string().trim().pattern(emailRegexp).required(),
+});

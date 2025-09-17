@@ -16,6 +16,30 @@ const registerController = async (req, res, next) => {
   }
 };
 
+const verifyEmailController = async (req, res, next) => {
+  try {
+    const { verificationToken } = req.params;
+    const result = await authServices.verifyUser(verificationToken);
+    return res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const resendVerifyEmailController = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      throw HttpError(400, "Missing required field email");
+    }
+
+    const result = await authServices.resendVerifyEmail(email);
+    return res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const loginController = async (req, res, next) => {
   try {
     const result = await authServices.loginUser(req.body);
@@ -104,4 +128,6 @@ export default {
   logoutController,
   updateSubscriptionController,
   updateAvatarController,
+  verifyEmailController,
+  resendVerifyEmailController,
 };

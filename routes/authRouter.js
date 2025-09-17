@@ -7,6 +7,7 @@ import {
   registerSchema,
   loginSchema,
   updateSubscriptionSchema,
+  verifyEmailSchema,
 } from "../schemas/authSchema.js";
 
 const authRouter = express.Router();
@@ -35,5 +36,7 @@ authRouter.patch(
   upload.single("avatar"),
   authControllers.updateAvatarController
 );
+authRouter.get("/verify/:verificationToken", authControllers.verifyEmailController);
+authRouter.post("/verify", validateBody(verifyEmailSchema), authControllers.resendVerifyEmailController);
 
 export default authRouter;

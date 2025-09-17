@@ -113,7 +113,7 @@ export const updateStatusContact = async (req, res, next) => {
       { id: idNum, owner },
       req.body
     );
-    
+
     if (!updated) throw HttpError(404, "Not found");
     res.status(200).json(updated);
   } catch (error) {
